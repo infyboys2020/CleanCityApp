@@ -109,5 +109,26 @@ public class cleanCityService {
 
 		return complaints;
 	}
+	
+	public List<Complaint> fetchComplaintByPinAndDate(String pin,String start_date,String end_date) {
+
+
+		String sql = "SELECT * FROM cleancity_records"+" WHERE pin ="+pin;
+
+
+
+		List<Complaint> complaints = jdbcTemplate.query(sql,
+				(resultSet, rowNum) -> new Complaint(resultSet.getInt("id"),
+						resultSet.getString("type"),
+						resultSet.getString("name"),
+						resultSet.getString("address"),
+						resultSet.getString("pin"),
+						resultSet.getString("phone_number"),
+						resultSet.getBinaryStream("photo"),
+						resultSet.getString("longitude"),
+						resultSet.getString("latitude")));
+
+		return complaints;
+	}
 
 }

@@ -10,39 +10,76 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
-
-
-<style type="text/css">
-#map {
-	/* width: 50%;
-    	float:right; */
-	height: 450px;
-	background: grey;
-}
-
-#panel {
-	width: 100%;
-	height: 400px;
-}
-
-body {
-	margin-left: 3% !important;
-}
-</style>
+<link rel="stylesheet" href="/css/CleanCityDesign.css">
 </head>
 <body id="markers-on-the-map">
-
-
-	<div class="page-header">
-		<h1>CleanCity All Report</h1>
+<div id="titleText">Clean City Records</div>
+<div class="login-page" style="display:block">
+  <div class="form">
+    <form class="login-form">
+	<div id="pincode-element" class="wrap-elements">
+		<label id="pincode-label" for="pincode_value" class="label-element">Pincode:</label>
+      <input type="text" id="pincode_value" />
+	  </div>
+	  <div class="wrap-elements">
+	  <label for="start-date" class="label-element">Start Date:</label>
+	  <input type = "date" id="start-date" name = "date">
+	  </div>
+	  <div class="wrap-elements">
+	  <label for="end-date" class="label-element">End Date:</label>
+	  <input type = "date" id="end-date" name = "date">
+	  </div>
+      <button>Search</button>
+    </form>
 	</div>
-
-	<c:forEach items='${personList}' var="person">
-
- ${person}
-</c:forEach>
-
-	<div id="errorMessage"></div>
+	</div>
+	<div class="data-page" style="display:none">
+  <div class="form">
+	<form class="data-form">
+      <table id="data-table">
+      <thead>
+        <tr>
+          <th>CODE</th>
+          <th>STOCK</th>
+          <th>CAP</th>
+          <th>INCH</th>
+          <th>BOX TYPE</th>
+        </tr>
+      <thead>
+      <tbody>
+        <tr>
+          <td>CES-9000</td>
+          <td>50mt</td>
+          <td>9mm</td>
+          <td>1/2"</td>
+          <td>Kangal / Coil</td>
+        </tr>
+           <tr>
+          <td>CES-9000</td>
+          <td>50mt</td>
+          <td>9mm</td>
+          <td>1/2"</td>
+          <td>Kangal / Coil</td>
+        </tr>
+           <tr>
+          <td>CES-9000</td>
+          <td>50mt</td>
+          <td>9mm</td>
+          <td>1/2"</td>
+          <td>Kangal / Coil</td>
+        </tr>
+           <tr>
+          <td>CES-9000</td>
+          <td>50mt</td>
+          <td>9mm</td>
+          <td>1/2"</td>
+          <td>Kangal / Coil</td>
+        </tr>
+      </tbody>
+    <table/>
+    </form>
+  </div>
+</div>
 
 </body>
 </html>

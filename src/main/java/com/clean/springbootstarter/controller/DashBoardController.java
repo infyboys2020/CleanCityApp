@@ -41,6 +41,12 @@ public class DashBoardController {
 		return "ReportingBoard";
 
 	}
+	
+	@GetMapping("/fetch")
+	public String fetchBoard() {
+		return "cleanCityInfo";
+
+	}
 
 	@PostMapping("/reportBoard")
 	public String uploadForm(Complaint form, @RequestParam("image") MultipartFile file, Model model) {
@@ -104,12 +110,12 @@ public class DashBoardController {
 	 */
 
 	@GetMapping("/fetch/demo")
-	public ModelAndView fetchDemo(@RequestParam("pin") String pin) {
+	public ModelAndView fetchDemo(@RequestParam("pin") String pin/*,@RequestParam("start_date")String start_date,@RequestParam("end_date")String end_date*/) {
 
 		ModelAndView model = new ModelAndView("cleanCityInfo");
 		try {
 
-			List<Complaint> complaints = cleanCityService.fetchComplaintByPin(pin);
+			List<Complaint> complaints = cleanCityService.fetchComplaintWithImage(pin);
 			// ObjectMapper Obj = new ObjectMapper();
 			// String jsonStr = Obj.writeValueAsString(userEntries);
 			model.addObject("name", complaints.get(0).getName());
