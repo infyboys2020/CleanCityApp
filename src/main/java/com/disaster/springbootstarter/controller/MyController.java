@@ -11,20 +11,20 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.disaster.springbootstarter.APIController.NewsAPIController;
-import com.disaster.springbootstarter.beans.Article;
 import com.disaster.springbootstarter.beans.Disaster;
 import com.disaster.springbootstarter.beans.History;
 
-@org.springframework.stereotype.Controller
-@Component("MyController")
-public class Controller {
+
+@Controller
+public class MyController {
 	
 	@Autowired
 	com.disaster.springbootstarter.APIController.MapAPIController MapAPIController;
@@ -35,11 +35,11 @@ public class Controller {
 	@Autowired
 	NewsAPIController NewsAPIController;
 
-	@RequestMapping("/hello")
+	@GetMapping("/helloPage")
 	@ResponseBody
 	public String index() {
-		services.getDisaster();
-		return "Greetings from Spring Boot!";
+		//services.getDisaster();
+		return "Greetings from Spring Boot! hvjv";
 		
 	}
 	

@@ -1,5 +1,5 @@
 package com.disaster.springbootstarter;
-
+/*
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -15,3 +15,4 @@ public class Application extends SpringBootServletInitializer{
 //	}
 
 }
+*/
