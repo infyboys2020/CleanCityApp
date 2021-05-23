@@ -9,6 +9,7 @@
 <title>Clean City</title>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/cleanCityInfo.js"></script>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/CleanCityDesign.css">
 </head>
@@ -29,55 +30,27 @@
 	  <label for="end-date" class="label-element">End Date:</label>
 	  <input type = "date" id="end-date" name = "date">
 	  </div>
-      <button>Search</button>
+      <button type='button' id="search-data">Search</button>
     </form>
 	</div>
 	</div>
 	<div class="data-page" style="display:none">
-  <div class="form">
-	<form class="data-form">
-      <table id="data-table">
+  <div class="form" style="max-width: max-content;">
+	<table id="data-table">
       <thead>
         <tr>
-          <th>CODE</th>
-          <th>STOCK</th>
-          <th>CAP</th>
-          <th>INCH</th>
-          <th>BOX TYPE</th>
+          <th>ID</th>
+          <th>NAME</th>
+          <th>ADDRESS</th>
+          <th>TYPE</th>
+          <th>PHONE NUMBER</th>
+          <th>DATE</th>
+          <th>STATUS</th>
         </tr>
       <thead>
-      <tbody>
-        <tr>
-          <td>CES-9000</td>
-          <td>50mt</td>
-          <td>9mm</td>
-          <td>1/2"</td>
-          <td>Kangal / Coil</td>
-        </tr>
-           <tr>
-          <td>CES-9000</td>
-          <td>50mt</td>
-          <td>9mm</td>
-          <td>1/2"</td>
-          <td>Kangal / Coil</td>
-        </tr>
-           <tr>
-          <td>CES-9000</td>
-          <td>50mt</td>
-          <td>9mm</td>
-          <td>1/2"</td>
-          <td>Kangal / Coil</td>
-        </tr>
-           <tr>
-          <td>CES-9000</td>
-          <td>50mt</td>
-          <td>9mm</td>
-          <td>1/2"</td>
-          <td>Kangal / Coil</td>
-        </tr>
+      <tbody>        
       </tbody>
     <table/>
-    </form>
   </div>
 </div>
 
