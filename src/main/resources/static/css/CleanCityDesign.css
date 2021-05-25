@@ -133,9 +133,13 @@ table {
     table-layout: fixed;
     width: 900px;
 }
-    table td {
+table td {
         width: 90px;
-    }
+}
+
+tr:nth-child(odd) {  
+  background:#EEEEEE;  
+} 
   
   td,th{ 
   padding-left:8px !important;
@@ -148,7 +152,9 @@ table {
   }
   
   tbody tr{
-	  height:48px !important; border-bottom:1px solid #E3F1D5 !important;
+	  height:48px !important; 
+	  border-bottom:1px solid #E3F1D5 !important;
+	  cursor: pointer;
     &:last-child  { border:0 !important; }
   }
   
@@ -169,4 +175,21 @@ body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
+}
+
+#orderModal{
+	background: #FFFFFF;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgb(0 0 0 / 20%), 0 5px 5px 0 rgb(0 0 0 / 24%);
+    margin: 100px 100px;
+}
+
+.modal-dialog{
+	margin: 0px;
+    width: 100%;
+}
+.modal-header{
+	padding: 0px;
+    background: #76b852;
+    color: #FFF;
 }

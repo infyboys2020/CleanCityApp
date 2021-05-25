@@ -113,10 +113,10 @@ public class cleanCityService {
 	}
 
 
-	public List<Complaint> fetchComplaintWithImage(String pin,String startdate,String enddate) {
+	public List<Complaint> fetchComplaintWithImage(String id) {
 
 
-		String sql = "SELECT * FROM cleancity_records"+" WHERE pin ="+pin+" AND ComplaintSubmissionDate BETWEEN '"+startdate+ "' AND '"+enddate+"'";
+		String sql = "SELECT * FROM cleancity_records"+" WHERE id ="+id;
 
 
 
@@ -129,7 +129,9 @@ public class cleanCityService {
 						resultSet.getString("phone_number"),
 						resultSet.getBinaryStream("photo"),
 						resultSet.getString("longitude"),
-						resultSet.getString("ComplaintSubmissionDate")));
+						resultSet.getString("latitude"),
+						resultSet.getString("ComplaintSubmissionDate"),
+						resultSet.getString("status")));
 						
 		return complaints;
 	}

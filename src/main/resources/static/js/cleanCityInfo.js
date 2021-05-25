@@ -3,6 +3,12 @@ $(document).ready(function() {
 			$(".login-page").hide();
 			submitForm();
 		});
+		
+		$('#orderModal').on('show.bs.modal', function (event) {
+			  var myVal = $(event.relatedTarget).data('id');
+			  displaySpecificIncident(myVal,$(this));
+			  //$(this).find(".modal-body").text(myVal);
+			});
 });
 
 function submitForm(){
@@ -29,9 +35,27 @@ function populateTable(message){
 	var table = document.getElementById("data-table");
 	var row="";
 	for(var i=0;i<shareInfoLen;i++){
-		var markup = "<tr><td>" + parsedJSON[i].id + "</td><td>" + parsedJSON[i].name + "</td><td>" + parsedJSON[i].address + "</td><td>" + parsedJSON[i].type + "</td><td>" + parsedJSON[i].phone_number + "</td><td>" + parsedJSON[i].complaintSubmissionDate + "</td><td>" + parsedJSON[i].status + "</td></tr>";
+		var markup = "<tr data-toggle='modal' data-id="+parsedJSON[i].id+" data-target='#orderModal'><td>" + parsedJSON[i].id + "</td><td>" + parsedJSON[i].name + "</td><td>" + parsedJSON[i].address + "</td><td>" + parsedJSON[i].type + "</td><td>" + parsedJSON[i].phone_number + "</td><td>" + parsedJSON[i].complaintSubmissionDate + "</td><td>" + parsedJSON[i].status + "</td></tr>";
         $("table tbody").append(markup);
 		
 	}
 	$(".data-page").show();
+}
+
+function displaySpecificIncident(incident_id,objectModal){
+	$.ajax({
+		url:"/fetch/data_with_id",
+		data:"id="+incident_id,
+		async : false,
+		type:'get',
+	  	success:function(response){
+	  		$(objectModal).find(".modal-body").html(response);
+			
+	  	},
+		error:function(error){
+			map.removeObjects(map.getObjects());
+			$("#errorMessage").text(error.responseText);
+		}
+	});
+
 }
