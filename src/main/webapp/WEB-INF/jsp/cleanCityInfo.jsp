@@ -15,6 +15,18 @@
 </head>
 <body id="markers-on-the-map">
 <div id="titleText">Clean City Records</div>
+<div id="orderModal" class="modal fade" role="dialog" 
+     aria-labelledby="orderModalLabel" aria-hidden="true">
+  <div class="modal-dialog">   
+ 	<div class="modal-header">
+      <h3 style="font-weight: bolder;">Incident Details</h3>
+  </div>
+  <div id="orderDetails"class="modal-body"></div>
+    <div class="modal-footer">
+    <button class="btn btn-success detail-close" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+  </div> 
+ </div>
 <div class="login-page" style="display:block">
   <div class="form">
     <form class="login-form">
