@@ -23,7 +23,7 @@
   </div>
   <div id="orderDetails"class="modal-body"></div>
     <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-success detail-close" data-dismiss="modal" aria-hidden="true">Close</button>
   </div>
   </div> 
  </div>

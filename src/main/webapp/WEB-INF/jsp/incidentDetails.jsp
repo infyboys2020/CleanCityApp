@@ -23,12 +23,26 @@
 	var status="${status}";
 	var type="${type}";
 	var ComplaintSubmissionDate="${ComplaintSubmissionDate}";
-	var photo="${photo}";
-	
-	
+	var photo="data:image/png;base64, "+"${photo}";
+			
+
 </script>
 </head>
 <body id="markers-on-the-map">
-<div><h3>Order</h3></div>
+<div>
+<h3 class="details-heading">Details of incident</h3>
+<p id="incident-id" class="details-inci"></p>
+<p id="name-of-reporter" class="details-inci"></p>
+<p id="address-of-reporter" class="details-inci"></p>
+<p id="contact-of-reporter" class="details-inci"></p>
+<p id="address-pin" class="details-inci"></p>
+<p id="type-of-incident" class="details-inci"></p>
+<p id="report-status" class="details-inci"></p>
+<p id="reporting-date" class="details-inci"></p>
+</div>
+<div id="image-holder">
+<h3 class="details-heading">Images of incident</h3>
+<img id="image-holder-place" style="width: 60%;" alt="Red dot" />
+</div>
 </body>
 </html>

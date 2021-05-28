@@ -9,6 +9,16 @@ $(document).ready(function() {
 			  displaySpecificIncident(myVal,$(this));
 			  //$(this).find(".modal-body").text(myVal);
 			});
+		
+		document.getElementById("image-holder-place").src = photo;
+		$("#incident-id").html("Incident Number: "+id);
+		$("#name-of-reporter").html("Name of the reporting person: "+name);
+		$("#address-of-reporter").html("Address of the incident: "+address);
+		$("#contact-of-reporter").html("Contact number: "+phone);
+		$("#address-pin").html("Pin number of the area: "+pin);
+		$("#report-status").html("Status of the incident: "+status);
+		$("#type-of-incident").html("Type of issue: " +type);
+		$("#reporting-date").html("Reprting date: "+ComplaintSubmissionDate);
 });
 
 function submitForm(){
