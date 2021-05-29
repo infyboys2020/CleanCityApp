@@ -14,6 +14,7 @@ public class Complaint {
 	private String latitude;
 	private String ComplaintSubmissionDate;
 	private String status;
+	private String photoString;
 
 	public Complaint() {
 		
@@ -31,6 +32,30 @@ public class Complaint {
 		this.photo = photo;
 		this.longitude = longitude;
 		this.latitude = latitude;
+	}
+
+	public Complaint(int id, String type, String name, String address, String pin, String phone_number,
+			InputStream photo, String longitude, String latitude,String ComplaintSubmissionDate,String status) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.name = name;
+		this.address = address;
+		this.pin = pin;
+		this.phone_number = phone_number;
+		this.photo = photo;
+		this.longitude = longitude;
+		this.latitude = latitude;
+		this.ComplaintSubmissionDate=ComplaintSubmissionDate;
+		if(status.equals("P"))
+			this.status = "In-Progress";
+		else if(status.equals("A"))
+			this.status = "Acknowledged";
+		else if(status.equals("D"))
+			this.status = "Done";
+		else
+			this.status = status;
+
 	}
 
 	public Complaint(int id, String type, String name, String address, String pin, String phone_number, String ComplaintSubmissionDate,String status) {
@@ -160,6 +185,14 @@ public  Complaint(String name, String address,String pin,String phone_number) {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	public String getPhotoString() {
+		return photoString;
+	}
+
+	public void setPhotoString(String photoString) {
+		this.photoString = photoString;
 	}
 
 }

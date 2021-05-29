@@ -118,7 +118,6 @@ public class DashBoardController {
 	@ResponseBody
 	public String fetchData(@RequestParam("pin") String pin,@RequestParam("start_date")String start_date,@RequestParam("end_date")String end_date) {
 
-		//ModelAndView map = new ModelAndView();
 		String jsonStr = "";
 		try {
 
@@ -126,7 +125,7 @@ public class DashBoardController {
 			ObjectMapper Obj = new ObjectMapper();
 			jsonStr = Obj.writeValueAsString(complaints);
 
-			//map.addObject("responseText", jsonStr);
+			
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -143,21 +142,25 @@ public class DashBoardController {
 	 * @return
 	 */
 
-	@GetMapping("/fetch/demo")
-	public ModelAndView fetchDemo(@RequestParam("pin") String pin,@RequestParam("start_date")String start_date,@RequestParam("end_date")String end_date) {
+	@GetMapping("/fetch/data_with_id")
+	public ModelAndView fetchDemo(@RequestParam("id") String id) {
 
-		ModelAndView model = new ModelAndView("cleanCityInfo");
+		ModelAndView model = new ModelAndView("incidentDetails");
+		
 		try {
 
-			List<Complaint> complaints = cleanCityService.fetchComplaintWithImage(pin,start_date,end_date);
-			// ObjectMapper Obj = new ObjectMapper();
-			// String jsonStr = Obj.writeValueAsString(userEntries);
+			List<Complaint> complaints = cleanCityService.fetchComplaintWithImage(id);
+			model.addObject("id", complaints.get(0).getId());
 			model.addObject("name", complaints.get(0).getName());
 			model.addObject("address", complaints.get(0).getAddress());
 			model.addObject("phone", complaints.get(0).getPhone_number());
 			model.addObject("pin", complaints.get(0).getPin());
+			model.addObject("latitude", complaints.get(0).getLatitude());
+			model.addObject("longitude", complaints.get(0).getLongitude());
+			model.addObject("status", complaints.get(0).getStatus());
+			model.addObject("type", complaints.get(0).getType());
 			model.addObject("ComplaintSubmissionDate", complaints.get(0).getComplaintSubmissionDate());
-			// model.addAttribute("photo", jsonStr);
+			
 			if(null!=complaints.get(0).getPhoto()) {
 			InputStream inputStream = complaints.get(0).getPhoto();
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -174,7 +177,6 @@ public class DashBoardController {
 
 			inputStream.close();
 			outputStream.close();
-
 			model.addObject("photo", base64Image);
 			}
 
