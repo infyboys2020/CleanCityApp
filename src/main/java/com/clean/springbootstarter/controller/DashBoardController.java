@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.clean.springbootstarter.beans.Complaint;
+import com.clean.springbootstarter.services.EmailService;
 import com.clean.springbootstarter.beans.Complaint;
 
 @Controller
@@ -31,6 +32,9 @@ public class DashBoardController {
 
 	@Autowired
 	com.clean.springbootstarter.services.cleanCityService cleanCityService;
+	
+	@Autowired
+	EmailService emailService;
 
 	/**
 	 * This is a demo method to show Application is running successfully.
@@ -135,6 +139,7 @@ public class DashBoardController {
 			if (cleanCityService.insertComplaint(complaint) == 1) {
 
 				status = "Your ticket has been logged sucessfully!!";
+				emailService.sendSimpleMessage();
 			} else {
 				status = "Ticket logging failed due to technical issues. Please try again after sometime.";
 			}
@@ -165,7 +170,7 @@ public class DashBoardController {
 		String jsonStr = "";
 		try {
 
-			List<Complaint> complaints = cleanCityService.fetchComplaintByPin(pin,start_date,end_date);
+			List<Complaint> complaints = cleanCityService.fetchAllComplaints(pin,start_date,end_date);
 			ObjectMapper Obj = new ObjectMapper();
 			jsonStr = Obj.writeValueAsString(complaints);
 
@@ -241,25 +246,22 @@ public class DashBoardController {
 		return "reportMap";
 	} 
 
-	/*@RequestMapping("/getComplaintList")
+	@RequestMapping("/getComplaintList")
 	@ResponseBody
 	public String getComplaintList() {
-		List<Complaint> complaints =cleanCityService.getAllComplaintsWithoutImage();
+		List<Complaint> complaints =cleanCityService.fetchAllComplaints(null,null,null);
 		ObjectMapper Obj = new ObjectMapper(); 
 		String jsonStr=null;
 		try {
 			jsonStr = Obj.writeValueAsString(complaints);
 		} catch (JsonGenerationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return jsonStr;
-	} */
+	} 
 
 }
