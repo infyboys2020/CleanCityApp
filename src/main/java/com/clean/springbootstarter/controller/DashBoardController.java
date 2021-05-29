@@ -58,7 +58,12 @@ public class DashBoardController {
 
 	}
 	
-	@GetMapping("/fetch")
+	/**
+	 * Search page for complaints.
+	 * Here, we can search complaints by  pincode. 
+	 * @return
+	 */
+	@GetMapping("/admin/fetch")
 	public String fetchBoard() {
 		return "cleanCityInfo";
 	}
