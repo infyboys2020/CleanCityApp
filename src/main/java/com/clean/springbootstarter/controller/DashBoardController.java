@@ -33,7 +33,7 @@ public class DashBoardController {
 	com.clean.springbootstarter.services.cleanCityService cleanCityService;
 
 	/**
-	 * This is a demo function to show Application is running successfully.
+	 * This is a demo method to show Application is running successfully.
 	 * @return
 	 */
 	@RequestMapping("/user/cleancity")
