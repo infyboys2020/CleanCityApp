@@ -29,3 +29,6 @@ CREATE TABLE `cleancity_records` (
   PRIMARY KEY (`id`)
 ) ;
 
+##Authentication
+user: admin
+password: admin
