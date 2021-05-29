@@ -33,7 +33,24 @@ CREATE TABLE `cleancity_records` (
 ) ;
 
 ```
+```
++-------------------------+------------------+------+-----+---------+----------------+
+| Field                   | Type             | Null | Key | Default | Extra          |
++-------------------------+------------------+------+-----+---------+----------------+
+| id                      | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| type                    | varchar(45)      | YES  |     | NULL    |                |
+| status                  | varchar(45)      | YES  |     | P       |                |
+| name                    | varchar(150)     | NO   |     | NULL    |                |
+| address                 | varchar(150)     | NO   |     | NULL    |                |
+| pin                     | varchar(150)     | NO   |     | NULL    |                |
+| phone_number            | varchar(150)     | NO   |     | NULL    |                |
+| photo                   | longblob         | YES  |     | NULL    |                |
+| longitude               | varchar(45)      | YES  |     | NULL    |                |
+| latitude                | varchar(45)      | YES  |     | NULL    |                |
+| ComplaintSubmissionDate | date             | NO   |     | NULL    |                |
++-------------------------+------------------+------+-----+---------+----------------+
 
+```
 ### Authentication
 ```
 user: admin
