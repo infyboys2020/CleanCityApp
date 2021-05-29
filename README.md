@@ -15,7 +15,7 @@ http://localhost:9080/fetch
 http://localhost:9080/reportBoard
 
 
-### DB Query
+### Database
 ```
 CREATE TABLE `cleancity_records` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
