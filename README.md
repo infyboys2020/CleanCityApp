@@ -40,3 +40,15 @@ user: admin
 password: admin
 
 ```
+```
+# Please check CleanCitConfig class for Authentication configurations.
+.authorizeRequests()
+	        .antMatchers("/user/**").permitAll()  //Put all url patterns here which does not require authentication.
+	        .antMatchers("/admin/**").hasRole("ADMIN")  // Url patterns for Authentication.
+	        .anyRequest().authenticated().and().formLogin().
+	        defaultSuccessUrl("/admin/reportBoard", true)
+	        .permitAll()
+	        .and().logout()
+	        .permitAll();
+          
+          ```
