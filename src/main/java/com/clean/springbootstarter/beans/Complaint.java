@@ -58,13 +58,15 @@ public class Complaint {
 
 	}
 
-	public Complaint(int id, String type, String name, String address, String pin, String phone_number, String ComplaintSubmissionDate,String status) {
+	public Complaint(int id, String type, String name, String address, String pin, String longitude, String latitude,  String phone_number, String ComplaintSubmissionDate,String status) {
 		super();
 		this.id = id;
 		this.type = type;
 		this.name = name;
 		this.address = address;
 		this.pin = pin;
+		this.longitude = longitude;
+		this.latitude = latitude;
 		this.phone_number = phone_number;
 		this.ComplaintSubmissionDate=ComplaintSubmissionDate;
 		if(status.equals("P"))
