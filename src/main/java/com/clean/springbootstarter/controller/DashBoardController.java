@@ -11,6 +11,8 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,13 +36,23 @@ public class DashBoardController {
 	@Autowired
 	EmailService emailService;
 
-	@RequestMapping("/cleancity")
-	public String index() {
-		return "Welcome to clean city portal !";
-
+	/**
+	 * This is a demo method to show Application is running successfully.
+	 * @return
+	 */
+	@RequestMapping("/user/cleancity")
+	public ResponseEntity<String> index() {
+		
+		return new ResponseEntity<String> ("Welcome to clean city portal !", HttpStatus.OK);
+	
 	}
 
-	@GetMapping("/reportBoard")
+	/**
+	 * Method to show reportBoard page to user.
+	 * This page is used for complaint reporting.
+	 * @return
+	 */
+	@GetMapping("/user/reportBoard")
 	public String reportBoard() {
 		return "ReportingBoard";
 
@@ -51,13 +63,24 @@ public class DashBoardController {
 		return "cleanCityInfo";
 	}
 	
-	@GetMapping("/ticketBoard")
+	/**
+	 * This method is used to render user TicketBoard.
+	 * @return
+	 */
+	@GetMapping("/user/ticketBoard")
 	public String ticketBoard() {
 		return "TicketBoard";
 
 	}
 	
-	@PostMapping("/ticketBoard")
+	/**
+	 * This method used for fetching ticket information from database.
+	 * User functionality.
+	 * @param ticketId
+	 * @param model
+	 * @return
+	 */
+	@PostMapping("/user/ticketBoard")
 	public String getTicketStatus(String ticketId, Model model) {
 		String status = cleanCityService.getTicketStatus(ticketId);
 		if(status!=null) {
@@ -82,8 +105,16 @@ public class DashBoardController {
 		return "TicketResult";
 
 	}
-
-	@PostMapping("/reportBoard")
+	
+	/**
+	 * This method is used for inserting complaints details into database.
+	 * User functionality.
+	 * @param form
+	 * @param file
+	 * @param model
+	 * @return
+	 */
+	@PostMapping("/user/reportBoard")
 	public String uploadForm(Complaint form, @RequestParam("image") MultipartFile file, Model model) {
 		String status = "";
 		FileInputStream fin  = null;
@@ -118,8 +149,16 @@ public class DashBoardController {
 		return "ReportingResult";
 
 	}
+	
+	/**
+	 * Method to fetch all complaints and show in dashboard.
+	 * @param pin
+	 * @param start_date
+	 * @param end_date
+	 * @return
+	 */
 
-	@GetMapping("/fetch/data")
+	@GetMapping("/admin/fetch/data")
 	@ResponseBody
 	public String fetchData(@RequestParam("pin") String pin,@RequestParam("start_date")String start_date,@RequestParam("end_date")String end_date) {
 
@@ -147,7 +186,7 @@ public class DashBoardController {
 	 * @return
 	 */
 
-	@GetMapping("/fetch/data_with_id")
+	@GetMapping("/admin/fetch/data_with_id")
 	public ModelAndView fetchDemo(@RequestParam("id") String id) {
 
 		ModelAndView model = new ModelAndView("incidentDetails");
@@ -193,8 +232,11 @@ public class DashBoardController {
 		return model;
 
 	}
-	
-	@RequestMapping("/reportMap")
+	/*
+	 * I do not see reportMap used anywhere. 
+	 * Please check and delete it if not necessary.
+	 */
+	@RequestMapping("/admin/reportMap")
 	public String report(Model model) {
 		return "reportMap";
 	} 
