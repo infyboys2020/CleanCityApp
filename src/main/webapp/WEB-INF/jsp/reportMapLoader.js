@@ -6,7 +6,10 @@
 function moveMapToBerlin(map){
   map.setCenter({lat:52.5159, lng:13.3777});
   map.setZoom(14);
-
+}
+function moveMapToBBSR(map){
+  map.setCenter({lat:20.2961, lng:85.8245});
+  map.setZoom(10);
 }
 
 /**
@@ -27,23 +30,18 @@ var map = new H.Map(document.getElementById('map'),
   zoom: 4,
   pixelRatio: window.devicePixelRatio || 1
 });
-/**
- * An event listener is added to listen to tap events on the map.
- * Clicking on the map displays an alert box containing the latitude and longitude
- * of the location pressed.
- * @param  {H.Map} map      A HERE Map instance within the application
- */
-  // Attach an event listener to map display
+ // Attach an event listener to map display
   // obtain the coordinates and display in an alert box.
 map.addEventListener('tap', function (evt) {
     var coord = map.screenToGeo(evt.currentPointer.viewportX,
             evt.currentPointer.viewportY);
+	document.getElementsByName("longitude")[0].value = coord.lng;
+	document.getElementsByName("latitude")[0].value = coord.lat;
     console.log('Clicked at ' + Math.abs(coord.lat.toFixed(4)) +
         ((coord.lat > 0) ? 'N' : 'S') +
         ' ' + Math.abs(coord.lng.toFixed(4)) +
          ((coord.lng > 0) ? 'E' : 'W'));
 });
-
 // add a resize listener to make sure that the map occupies the whole container
 window.addEventListener('resize', () => map.getViewPort().resize());
 
@@ -58,5 +56,5 @@ var ui = H.ui.UI.createDefault(map, defaultLayers);
 // Now use the map as required...
 window.onload = function () {
 	//populateLocation();
-	
+	moveMapToBBSR(map);
 }

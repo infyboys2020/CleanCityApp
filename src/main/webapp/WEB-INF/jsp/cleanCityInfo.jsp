@@ -9,40 +9,62 @@
 <title>Clean City</title>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/cleanCityInfo.js"></script>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
-
-
-<style type="text/css">
-#map {
-	/* width: 50%;
-    	float:right; */
-	height: 450px;
-	background: grey;
-}
-
-#panel {
-	width: 100%;
-	height: 400px;
-}
-
-body {
-	margin-left: 3% !important;
-}
-</style>
+<link rel="stylesheet" href="/css/CleanCityDesign.css">
 </head>
 <body id="markers-on-the-map">
-
-
-	<div class="page-header">
-		<h1>CleanCity All Report</h1>
+<div id="titleText">Clean City Records</div>
+<div id="orderModal" class="modal fade" role="dialog" 
+     aria-labelledby="orderModalLabel" aria-hidden="true">
+  <div class="modal-dialog">   
+ 	<div class="modal-header">
+      <h3 style="font-weight: bolder;">Incident Details</h3>
+  </div>
+  <div id="orderDetails"class="modal-body"></div>
+    <div class="modal-footer">
+    <button class="btn btn-success detail-close" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+  </div> 
+ </div>
+<div class="login-page" style="display:block">
+  <div class="form">
+    <form class="login-form">
+	<div id="pincode-element" class="wrap-elements">
+		<label id="pincode-label" for="pincode_value" class="label-element">Pincode:</label>
+      <input type="text" id="pincode_value" />
+	  </div>
+	  <div class="wrap-elements">
+	  <label for="start-date" class="label-element">Start Date:</label>
+	  <input type = "date" id="start-date" name = "date">
+	  </div>
+	  <div class="wrap-elements">
+	  <label for="end-date" class="label-element">End Date:</label>
+	  <input type = "date" id="end-date" name = "date">
+	  </div>
+      <button type='button' id="search-data">Search</button>
+    </form>
 	</div>
-
-	<c:forEach items='${personList}' var="person">
-
- ${person}
-</c:forEach>
-
-	<div id="errorMessage"></div>
+	</div>
+	<div class="data-page" style="display:none">
+  <div class="form" style="max-width: max-content;">
+	<table id="data-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>NAME</th>
+          <th>ADDRESS</th>
+          <th>TYPE</th>
+          <th>PHONE NUMBER</th>
+          <th>DATE</th>
+          <th>STATUS</th>
+        </tr>
+      <thead>
+      <tbody>        
+      </tbody>
+    <table/>
+  </div>
+</div>
 
 </body>
 </html>

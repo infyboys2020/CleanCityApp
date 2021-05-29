@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.clean.springbootstarter.beans.UserInfo;
+import com.clean.springbootstarter.beans.Complaint;
+import com.clean.springbootstarter.beans.Complaint;
 
 @Controller
 public class DashBoardController {
@@ -39,9 +41,46 @@ public class DashBoardController {
 		return "ReportingBoard";
 
 	}
+	
+	@GetMapping("/fetch")
+	public String fetchBoard() {
+		return "cleanCityInfo";
+	}
+	
+	@GetMapping("/ticketBoard")
+	public String ticketBoard() {
+		return "TicketBoard";
+
+	}
+	
+	@PostMapping("/ticketBoard")
+	public String getTicketStatus(String ticketId, Model model) {
+		String status = cleanCityService.getTicketStatus(ticketId);
+		if(status!=null) {
+			if(status.equalsIgnoreCase("A")) {
+				status= "Your ticket has been acknowledged successfully. Prompt action will be taken as soon as possible. Thank you!!";
+			}
+			else if(status.equalsIgnoreCase("D")) {
+				status= "Your ticket has been closed successfully.Enjoy the cleanliness!!";
+			}
+			else if(status.equalsIgnoreCase("P")) {
+				status= "Your ticket will be acknowledged as soon as our manpower is ready. It has not been acknowledged yet.";
+			}
+			else {
+				status= "Something went wrong. We could not fetch the status of your ticket. Please try again after sometime.";
+			}
+		}
+		else {
+			status= "Something went wrong. We could not fetch the status of your ticket. Please try again after sometime.";
+		}
+		model.addAttribute("status", status);
+
+		return "TicketResult";
+
+	}
 
 	@PostMapping("/reportBoard")
-	public String uploadForm(UserInfo form, @RequestParam("image") MultipartFile file, Model model) {
+	public String uploadForm(Complaint form, @RequestParam("image") MultipartFile file, Model model) {
 		String status = "";
 		FileInputStream fin  = null;
 
@@ -53,15 +92,17 @@ public class DashBoardController {
 			// FileInputStream fin = new
 			// FileInputStream("/home/bhruguraj/Pictures/test.png");
 			// System.out.println(fin);
-			UserInfo userInfo = new UserInfo(form.getName(), form.getAddress(), form.getPin(), form.getPhone_number(),
-					fin);
+			//Complaint complaint = new Complaint(form.getName(), form.getAddress(), form.getPin(), form.getPhone_number(),fin);
+			Complaint complaint = new Complaint(0, form.getType(), form.getName(), form.getAddress(),
+				form.getPin(), form.getPhone_number(), fin, form.getLongitude(), form.getLatitude());
 
-			if (cleanCityService.insertUserInfo(userInfo) == 1) {
+			if (cleanCityService.insertComplaint(complaint) == 1) {
 
-				status = "SUCCESS";
+				status = "Your ticket has been logged sucessfully!!";
 			} else {
-				status = "FAILED";
+				status = "Ticket logging failed due to technical issues. Please try again after sometime.";
 			}
+			model.addAttribute("ticketId", cleanCityService.getTicketID());
 			model.addAttribute("status", status);
 
 		} catch (Exception e) {
@@ -74,23 +115,24 @@ public class DashBoardController {
 	}
 
 	@GetMapping("/fetch/data")
-	public ModelAndView fetchData(@RequestParam("pin") String pin) {
+	@ResponseBody
+	public String fetchData(@RequestParam("pin") String pin,@RequestParam("start_date")String start_date,@RequestParam("end_date")String end_date) {
 
-		ModelAndView map = new ModelAndView("cleanCityInfo");
+		String jsonStr = "";
 		try {
 
-			List<UserInfo> userEntries = cleanCityService.fetchUserInfoByPin(pin);
+			List<Complaint> complaints = cleanCityService.fetchComplaintByPin(pin,start_date,end_date);
 			ObjectMapper Obj = new ObjectMapper();
-			String jsonStr = Obj.writeValueAsString(userEntries);
+			jsonStr = Obj.writeValueAsString(complaints);
 
-			map.addObject("personList", jsonStr);
+			
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return map;
+		return jsonStr;
 
 	}
 	
@@ -100,22 +142,27 @@ public class DashBoardController {
 	 * @return
 	 */
 
-	@GetMapping("/fetch/demo")
-	public ModelAndView fetchDemo(@RequestParam("pin") String pin) {
+	@GetMapping("/fetch/data_with_id")
+	public ModelAndView fetchDemo(@RequestParam("id") String id) {
 
-		ModelAndView model = new ModelAndView("cleanCityInfo");
+		ModelAndView model = new ModelAndView("incidentDetails");
+		
 		try {
 
-			List<UserInfo> userEntries = cleanCityService.fetchUserInfoWithImage(pin);
-			// ObjectMapper Obj = new ObjectMapper();
-			// String jsonStr = Obj.writeValueAsString(userEntries);
-			model.addObject("name", userEntries.get(0).getName());
-			model.addObject("address", userEntries.get(0).getAddress());
-			model.addObject("phone", userEntries.get(0).getPhone_number());
-			model.addObject("pin", userEntries.get(0).getPin());
-			// model.addAttribute("photo", jsonStr);
-			if(null!=userEntries.get(0).getPhoto()) {
-			InputStream inputStream = userEntries.get(0).getPhoto();
+			List<Complaint> complaints = cleanCityService.fetchComplaintWithImage(id);
+			model.addObject("id", complaints.get(0).getId());
+			model.addObject("name", complaints.get(0).getName());
+			model.addObject("address", complaints.get(0).getAddress());
+			model.addObject("phone", complaints.get(0).getPhone_number());
+			model.addObject("pin", complaints.get(0).getPin());
+			model.addObject("latitude", complaints.get(0).getLatitude());
+			model.addObject("longitude", complaints.get(0).getLongitude());
+			model.addObject("status", complaints.get(0).getStatus());
+			model.addObject("type", complaints.get(0).getType());
+			model.addObject("ComplaintSubmissionDate", complaints.get(0).getComplaintSubmissionDate());
+			
+			if(null!=complaints.get(0).getPhoto()) {
+			InputStream inputStream = complaints.get(0).getPhoto();
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			byte[] buffer = new byte[4096];
 			int bytesRead = -1;
@@ -130,7 +177,6 @@ public class DashBoardController {
 
 			inputStream.close();
 			outputStream.close();
-
 			model.addObject("photo", base64Image);
 			}
 
@@ -142,5 +188,31 @@ public class DashBoardController {
 		return model;
 
 	}
+	
+	@RequestMapping("/reportMap")
+	public String report(Model model) {
+		return "reportMap";
+	} 
+
+	/*@RequestMapping("/getComplaintList")
+	@ResponseBody
+	public String getComplaintList() {
+		List<Complaint> complaints =cleanCityService.getAllComplaintsWithoutImage();
+		ObjectMapper Obj = new ObjectMapper(); 
+		String jsonStr=null;
+		try {
+			jsonStr = Obj.writeValueAsString(complaints);
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonStr;
+	} */
 
 }
