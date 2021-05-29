@@ -23,7 +23,7 @@ $(document).ready(function() {
 
 function submitForm(){
 	$.ajax({
-		url:"/fetch/data",
+		url:"/admin/fetch/data",
 		data:"pin="+document.getElementById("pincode_value").value + "&start_date=" + document.getElementById("start-date").value
 					+ "&end_date=" + document.getElementById("end-date").value,
 		async : false,
@@ -54,7 +54,7 @@ function populateTable(message){
 
 function displaySpecificIncident(incident_id,objectModal){
 	$.ajax({
-		url:"/fetch/data_with_id",
+		url:"/admin/fetch/data_with_id",
 		data:"id="+incident_id,
 		async : false,
 		type:'get',
