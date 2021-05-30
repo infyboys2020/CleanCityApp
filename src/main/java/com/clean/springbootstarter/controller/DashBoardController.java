@@ -11,6 +11,8 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.clean.springbootstarter.beans.Complaint;
+import com.clean.springbootstarter.services.EmailService;
 import com.clean.springbootstarter.beans.Complaint;
 
 @Controller
@@ -29,31 +32,60 @@ public class DashBoardController {
 
 	@Autowired
 	com.clean.springbootstarter.services.cleanCityService cleanCityService;
+	
+	@Autowired
+	EmailService emailService;
 
-	@RequestMapping("/cleancity")
-	public String index() {
-		return "Welcome to clean city portal !";
-
+	/**
+	 * This is a demo method to show Application is running successfully.
+	 * @return
+	 */
+	@RequestMapping("/user/cleancity")
+	public ResponseEntity<String> index() {
+		
+		return new ResponseEntity<String> ("Welcome to clean city portal !", HttpStatus.OK);
+	
 	}
 
-	@GetMapping("/reportBoard")
+	/**
+	 * Method to show reportBoard page to user.
+	 * This page is used for complaint reporting.
+	 * @return
+	 */
+	@GetMapping("/user/reportBoard")
 	public String reportBoard() {
 		return "ReportingBoard";
 
 	}
 	
-	@GetMapping("/fetch")
+	/**
+	 * Search page for complaints.
+	 * Here, we can search complaints by  pincode. 
+	 * @return
+	 */
+	@GetMapping("/admin/fetch")
 	public String fetchBoard() {
 		return "cleanCityInfo";
 	}
 	
-	@GetMapping("/ticketBoard")
+	/**
+	 * This method is used to render user TicketBoard.
+	 * @return
+	 */
+	@GetMapping("/user/ticketBoard")
 	public String ticketBoard() {
 		return "TicketBoard";
 
 	}
 	
-	@PostMapping("/ticketBoard")
+	/**
+	 * This method used for fetching ticket information from database.
+	 * User functionality.
+	 * @param ticketId
+	 * @param model
+	 * @return
+	 */
+	@PostMapping("/user/ticketBoard")
 	public String getTicketStatus(String ticketId, Model model) {
 		String status = cleanCityService.getTicketStatus(ticketId);
 		if(status!=null) {
@@ -78,8 +110,16 @@ public class DashBoardController {
 		return "TicketResult";
 
 	}
-
-	@PostMapping("/reportBoard")
+	
+	/**
+	 * This method is used for inserting complaints details into database.
+	 * User functionality.
+	 * @param form
+	 * @param file
+	 * @param model
+	 * @return
+	 */
+	@PostMapping("/user/reportBoard")
 	public String uploadForm(Complaint form, @RequestParam("image") MultipartFile file, Model model) {
 		String status = "";
 		FileInputStream fin  = null;
@@ -99,6 +139,7 @@ public class DashBoardController {
 			if (cleanCityService.insertComplaint(complaint) == 1) {
 
 				status = "Your ticket has been logged sucessfully!!";
+				emailService.sendSimpleMessage();
 			} else {
 				status = "Ticket logging failed due to technical issues. Please try again after sometime.";
 			}
@@ -113,15 +154,23 @@ public class DashBoardController {
 		return "ReportingResult";
 
 	}
+	
+	/**
+	 * Method to fetch all complaints and show in dashboard.
+	 * @param pin
+	 * @param start_date
+	 * @param end_date
+	 * @return
+	 */
 
-	@GetMapping("/fetch/data")
+	@GetMapping("/admin/fetch/data")
 	@ResponseBody
 	public String fetchData(@RequestParam("pin") String pin,@RequestParam("start_date")String start_date,@RequestParam("end_date")String end_date) {
 
 		String jsonStr = "";
 		try {
 
-			List<Complaint> complaints = cleanCityService.fetchComplaintByPin(pin,start_date,end_date);
+			List<Complaint> complaints = cleanCityService.fetchAllComplaints(pin,start_date,end_date);
 			ObjectMapper Obj = new ObjectMapper();
 			jsonStr = Obj.writeValueAsString(complaints);
 
@@ -142,7 +191,7 @@ public class DashBoardController {
 	 * @return
 	 */
 
-	@GetMapping("/fetch/data_with_id")
+	@GetMapping("/admin/fetch/data_with_id")
 	public ModelAndView fetchDemo(@RequestParam("id") String id) {
 
 		ModelAndView model = new ModelAndView("incidentDetails");
@@ -188,31 +237,31 @@ public class DashBoardController {
 		return model;
 
 	}
-	
-	@RequestMapping("/reportMap")
+	/*
+	 * I do not see reportMap used anywhere. 
+	 * Please check and delete it if not necessary.
+	 */
+	@RequestMapping("/admin/reportMap")
 	public String report(Model model) {
 		return "reportMap";
 	} 
 
-	/*@RequestMapping("/getComplaintList")
+	@RequestMapping("/getComplaintList")
 	@ResponseBody
 	public String getComplaintList() {
-		List<Complaint> complaints =cleanCityService.getAllComplaintsWithoutImage();
+		List<Complaint> complaints =cleanCityService.fetchAllComplaints(null,null,null);
 		ObjectMapper Obj = new ObjectMapper(); 
 		String jsonStr=null;
 		try {
 			jsonStr = Obj.writeValueAsString(complaints);
 		} catch (JsonGenerationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return jsonStr;
-	} */
+	} 
 
 }

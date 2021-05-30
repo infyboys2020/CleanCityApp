@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.clean.springbootstarter.beans.Complaint;
 
@@ -20,41 +21,6 @@ public class cleanCityService {
 	/**
 	 * fetch cleancity data into table.
 	 */
-
-	//		public List<UserInfo> fetchAllUserInfo() {
-	//			String sql = "SELECT *"+
-	//					"FROM cleancity_records";
-	//			
-	//			
-	//			
-	//			List<UserInfo> userRecords = jdbcTemplate.query(sql,
-	//					(resultSet, rowNum) -> new UserInfo(resultSet.getString("name"),
-	//														resultSet.getString("address"),
-	//														resultSet.getString("pin"),
-	//														resultSet.getString("phone_number"),
-	//														resultSet.getBinaryStream("photo")
-	//														));
-	//			
-	//			return userRecords;
-	//		}
-
-/*	public List<Complaint> getAllComplaintsWithoutImage() {
-
-		String sql = "SELECT * FROM cleancity_records";
-
-		List<Complaint> complaints = jdbcTemplate.query(sql,
-				(resultSet, rowNum) -> new Complaint(resultSet.getInt("id"),
-						resultSet.getString("type"),
-						resultSet.getString("name"),
-						resultSet.getString("address"),
-						resultSet.getString("pin"),
-						resultSet.getString("phone_number"),
-						resultSet.getString("longitude"),
-						resultSet.getString("latitude")));
-
-		return complaints;
-	}*/
-	
 	public int getTicketID() {
 
 		String sql = "SELECT max(id) FROM cleancity_records";
@@ -65,7 +31,7 @@ public class cleanCityService {
 
 	public String getTicketStatus(String ticketId) {
 
-		String sql = "SELECT current_status FROM cleancity_records where id= " + ticketId;
+		String sql = "SELECT status FROM cleancity_records where id= " + ticketId;
 		String status="";
 		status = jdbcTemplate.queryForObject(sql, new Object[] {}, String.class);
 		return status;
@@ -93,11 +59,21 @@ public class cleanCityService {
 		return queryStatus;
 
 	}
-	public List<Complaint> fetchComplaintByPin(String pin,String startdate,String enddate) {
+	public List<Complaint> fetchAllComplaints(String pin,String startdate,String enddate) {
 
 
-		String sql = "SELECT id,type,name,address,pin,phone_number,ComplaintSubmissionDate,status FROM cleancity_records"+" WHERE pin ="+pin+" AND ComplaintSubmissionDate BETWEEN '"+startdate+ "' AND '"+enddate+"'";
+		String sql = "SELECT id,type,name,address,pin,longitude,latitude,phone_number,ComplaintSubmissionDate,status FROM cleancity_records";
 
+		if(!StringUtils.isEmpty(pin) || !StringUtils.isEmpty(startdate) || !StringUtils.isEmpty(enddate)) {
+			sql += " WHERE ";
+			if(!StringUtils.isEmpty(pin))
+				sql += "pin =" + pin +" AND ";
+			if(!StringUtils.isEmpty(startdate))
+				sql += "ComplaintSubmissionDate >='" + startdate+"' AND ";
+			if(!StringUtils.isEmpty(enddate))
+				sql += "ComplaintSubmissionDate<='" + enddate+"' AND ";
+			sql = sql.substring(0, sql.length()-4);
+		}
 
 
 		List<Complaint> complaints = jdbcTemplate.query(sql,
@@ -106,6 +82,8 @@ public class cleanCityService {
 						resultSet.getString("name"),
 						resultSet.getString("address"),
 						resultSet.getString("pin"),
+						resultSet.getString("longitude"),
+						resultSet.getString("latitude"),
 						resultSet.getString("phone_number"),
 						resultSet.getString("ComplaintSubmissionDate"),
 						resultSet.getString("status")));

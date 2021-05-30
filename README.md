@@ -1,19 +1,22 @@
 # Clean City
 
-## Demo Page 
+### Demo Page 
+
 Url: http://localhost:9080/fetch/demo?pin=12345
+
 Check demo page to render image from database.
 
 
-##Fetch All Report By Pin
+### Fetch All Report By Pin
+
 http://localhost:9080/fetch
 
-##Reporting Page
+### Reporting Page
 http://localhost:9080/reportBoard
 
 
-##DB Query
-
+### Database
+```
 CREATE TABLE `cleancity_records` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `type` varchar(45) DEFAULT NULL,
@@ -29,3 +32,23 @@ CREATE TABLE `cleancity_records` (
   PRIMARY KEY (`id`)
 ) ;
 
+```
+
+### Authentication
+```
+user: admin
+password: admin
+
+```
+```
+# Please check CleanCitConfig class for Authentication configurations.
+.authorizeRequests()
+	        .antMatchers("/user/**").permitAll()  //Put all url patterns here which does not require authentication.
+	        .antMatchers("/admin/**").hasRole("ADMIN")  // Url patterns for Authentication.
+	        .anyRequest().authenticated().and().formLogin().
+	        defaultSuccessUrl("/admin/reportBoard", true)
+	        .permitAll()
+	        .and().logout()
+	        .permitAll();
+          
+          ```
