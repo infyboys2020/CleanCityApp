@@ -7,25 +7,43 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
+import com.clean.springbootstarter.services.CleanCityUserDetailsService;
+
+@SuppressWarnings("deprecation")
 @Configuration
 public class CleanCityConfig extends WebSecurityConfigurerAdapter{
+
+	@Autowired
+	private CleanCityUserDetailsService  userDetailsService;
 	
+	@Autowired
+	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
+		auth.userDetailsService(userDetailsService).passwordEncoder(NoOpPasswordEncoder.getInstance());
+	}
 	
 	@Override
 	  protected void configure(HttpSecurity http) throws Exception {
 	    http
 	    
 	      .authorizeRequests()
-	        .antMatchers("/user/**").permitAll()
-	        .antMatchers("/admin/**").hasRole("ADMIN")
+	        .antMatchers("/user/**","/css/**","/user/reportBoard").permitAll()
+	        .antMatchers("/admin/**").hasAuthority("ADMIN")
 	        .anyRequest().authenticated().and().formLogin().
 	        defaultSuccessUrl("/admin/fetch", true)
 	        .permitAll()
 	        .and().logout()
 	        .permitAll();
-	   
+	   http.csrf().disable();
 	  }
 	
+	
+/*
+ 
+ @Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+ 
 	@Autowired
 	  public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
 	    auth.inMemoryAuthentication()
@@ -37,5 +55,8 @@ public class CleanCityConfig extends WebSecurityConfigurerAdapter{
 	      .withUser("audit").password("audit").roles("USER", "ADMIN", "READER");
 	  }
 
+ */
+	
+	
 
 }
