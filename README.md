@@ -42,7 +42,7 @@ CREATE TABLE `user_details` (
 +----------+--------------+------+-----+---------+-------+
 
 
-INSERT INTO user_details VALUES("admin","admin",NULL,NULL,NULL,NULL);
+INSERT INTO user_details VALUES("admin","admin","admin",NULL,NULL,NULL);
 
 ```
 
