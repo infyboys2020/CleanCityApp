@@ -64,6 +64,9 @@
       </tbody>
     <table/>
   </div>
+  <div style="text-align:center">
+  <button type="button" class="btn btn-primary" id="searchButton" style="text-align:center;width: 20%;">Search Again</button>
+  </div>
 </div>
 
 </body>
