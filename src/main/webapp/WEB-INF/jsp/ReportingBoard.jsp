@@ -43,7 +43,7 @@
 	</div>
 
 
-    <form class="login" action="/reportBoard" method="post" enctype="multipart/form-data">
+    <form class="login" action="/user/reportBoard" method="post" enctype="multipart/form-data">
   <div class="login">
   <div class="login-header">
     <h1>Please fill in all the details to proceed</h1>
