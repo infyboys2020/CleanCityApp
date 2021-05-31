@@ -164,9 +164,10 @@ public class DashBoardController {
 	 * @return
 	 */
 
-	@GetMapping("/admin/fetch/data")
-	public  @ResponseBody Object fetchData(@RequestParam("pin") String pin,@RequestParam("start_date")String start_date,@RequestParam("end_date")String end_date) {
-
+	@PostMapping("/admin/fetch")
+	public String fetchData(@RequestParam("pin") String pin,@RequestParam("start_date") String start_date,@RequestParam("end_date") String end_date, Model model) {
+		//ModelAndView model = new ModelAndView("cleanCityData");
+		
 		String jsonStr = "";
 		try {
 
@@ -190,8 +191,9 @@ public class DashBoardController {
 					);
 			
 		}
-
-		return jsonStr;
+		model.addAttribute("dataFetched",jsonStr);
+		
+		return "cleanCityData";
 
 	}
 	
@@ -273,5 +275,30 @@ public class DashBoardController {
 		}
 		return jsonStr;
 	} 
+	
+	@GetMapping("/admin/fetch/updateStatus")
+	@ResponseBody
+	public String updateStatus(@RequestParam("id") String id,@RequestParam("status") String status) {
+		//ModelAndView model = new ModelAndView("cleanCityData");
+		
+		String jsonStr = "";
+		try {
+
+			int querResult = cleanCityService.updateStatusById(id,status);
+			ObjectMapper Obj = new ObjectMapper();
+			jsonStr = Obj.writeValueAsString("");
+			if(querResult>=1)
+				return "Success";
+			else
+				return "Failure";
+			
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			return "Failure";
+
+	}
 
 }
