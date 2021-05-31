@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.clean.springbootstarter.beans.Complaint;
@@ -164,13 +165,18 @@ public class DashBoardController {
 	 */
 
 	@GetMapping("/admin/fetch/data")
-	@ResponseBody
-	public String fetchData(@RequestParam("pin") String pin,@RequestParam("start_date")String start_date,@RequestParam("end_date")String end_date) {
+	public  @ResponseBody Object fetchData(@RequestParam("pin") String pin,@RequestParam("start_date")String start_date,@RequestParam("end_date")String end_date) {
 
 		String jsonStr = "";
 		try {
 
 			List<Complaint> complaints = cleanCityService.fetchAllComplaints(pin,start_date,end_date);
+			if(complaints.isEmpty()) {
+				
+				throw new ResponseStatusException(
+						  HttpStatus.NOT_FOUND, "records not found"
+						);
+			}
 			ObjectMapper Obj = new ObjectMapper();
 			jsonStr = Obj.writeValueAsString(complaints);
 
@@ -179,6 +185,10 @@ public class DashBoardController {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new ResponseStatusException(
+					  HttpStatus.NOT_FOUND, "No records found"
+					);
+			
 		}
 
 		return jsonStr;

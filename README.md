@@ -16,6 +16,36 @@ http://localhost:9080/reportBoard
 
 
 ### Database
+
+Need a table for userdetails.
+
+```
+CREATE TABLE `user_details` (
+  `userid` varchar(150)   NOT NULL ,
+  `password` varchar(150) NOT NULL,
+  `name` varchar(150)   DEFAULT NULL,
+  `city` varchar(150)	   DEFAULT NULL,
+  `email` varchar(150)	DEFAULT NULL,
+  `phone` varchar(150)	DEFAULT NULL,
+  PRIMARY KEY (`userid`)
+) ;
+
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| userid   | varchar(150) | NO   | PRI | NULL    |       |
+| password | varchar(150) | NO   |     | NULL    |       |
+| name     | varchar(150) | YES  |     | NULL    |       |
+| city     | varchar(150) | YES  |     | NULL    |       |
+| email    | varchar(150) | YES  |     | NULL    |       |
+| phone    | varchar(150) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+
+
+INSERT INTO user_details VALUES("admin","admin",NULL,NULL,NULL,NULL);
+
+```
+
 ```
 CREATE TABLE `cleancity_records` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
