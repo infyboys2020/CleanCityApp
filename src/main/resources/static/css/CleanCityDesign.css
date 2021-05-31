@@ -212,3 +212,19 @@ body {
     font-family: monospace;
     font-weight: 700;
 }
+.success-div{
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    padding: 5px auto;
+    padding: 5px 5px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.success-message{
+    text-align: center;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+}

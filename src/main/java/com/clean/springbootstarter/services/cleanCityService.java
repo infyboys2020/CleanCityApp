@@ -89,6 +89,17 @@ public class cleanCityService {
 						resultSet.getString("status")));
 		return complaints;
 	}
+	
+	public int updateStatusById(String id,String status) {
+
+
+		String sql = "UPDATE cleancity_records SET status = '"+status+"' WHERE id ="+id;
+
+
+
+		int queryResult = jdbcTemplate.update(sql);
+		return queryResult;
+	}
 
 
 	public List<Complaint> fetchComplaintWithImage(String id) {
