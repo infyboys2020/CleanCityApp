@@ -15,6 +15,8 @@ public class Complaint {
 	private String ComplaintSubmissionDate;
 	private String status;
 	private String photoString;
+	private String count;
+
 
 	public Complaint() {
 		
@@ -197,4 +199,11 @@ public  Complaint(String name, String address,String pin,String phone_number) {
 		this.photoString = photoString;
 	}
 
+	public String getCount() {
+		return count;
+	}
+
+	public void setCount(String count) {
+		this.count = count;
+	}
 }

@@ -72,7 +72,7 @@ function populateTable(message){
 
 function displaySpecificIncident(incident_id,objectModal){
 	$.ajax({
-		url:"/admin/fetch/data_with_id",
+		url:"/user/fetch/data_with_id",
 		data:"id="+incident_id,
 		async : false,
 		type:'get',

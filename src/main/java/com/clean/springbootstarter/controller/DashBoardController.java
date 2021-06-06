@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +33,7 @@ import com.clean.springbootstarter.beans.Complaint;
 public class DashBoardController {
 
 	@Autowired
-	com.clean.springbootstarter.services.cleanCityService cleanCityService;
+	com.clean.springbootstarter.services.CleanCityService cleanCityService;
 	
 	@Autowired
 	EmailService emailService;
@@ -76,7 +77,6 @@ public class DashBoardController {
 	@GetMapping("/user/ticketBoard")
 	public String ticketBoard() {
 		return "TicketBoard";
-
 	}
 	
 	/**
@@ -201,7 +201,7 @@ public class DashBoardController {
 	 * @return
 	 */
 
-	@GetMapping("/admin/fetch/data_with_id")
+	@GetMapping("/user/fetch/data_with_id")
 	public ModelAndView fetchDemo(@RequestParam("id") String id) {
 
 		ModelAndView model = new ModelAndView("incidentDetails");
@@ -247,31 +247,5 @@ public class DashBoardController {
 		return model;
 
 	}
-	/*
-	 * I do not see reportMap used anywhere. 
-	 * Please check and delete it if not necessary.
-	 */
-	@RequestMapping("/admin/reportMap")
-	public String report(Model model) {
-		return "reportMap";
-	} 
-
-	@RequestMapping("/getComplaintList")
-	@ResponseBody
-	public String getComplaintList() {
-		List<Complaint> complaints =cleanCityService.fetchAllComplaints(null,null,null);
-		ObjectMapper Obj = new ObjectMapper(); 
-		String jsonStr=null;
-		try {
-			jsonStr = Obj.writeValueAsString(complaints);
-		} catch (JsonGenerationException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return jsonStr;
-	} 
 
 }
