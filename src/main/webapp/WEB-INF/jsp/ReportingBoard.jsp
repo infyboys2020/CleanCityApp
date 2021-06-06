@@ -54,8 +54,10 @@
     
     <h3 for="type">Type of incident:</h3>
 	<select name="type" id="type">
-	  <option value="garbage">Garbage</option>
-	  <option value="pothole">Pothole</option>
+	  <option value="Garbage collection">Garbage collection request</option>
+	  <option value="Sweepeing request">Road sweeping not done</option>
+	  <option value="Pothole reported">Pothole on road</option>
+	  <option value="Illegal tree cutting">Illegal tree cutting</option>
 	</select>
     
     <h3>Address:</h3>
