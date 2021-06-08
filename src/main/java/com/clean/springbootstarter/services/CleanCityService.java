@@ -124,5 +124,32 @@ public class CleanCityService {
 						
 		return complaints;
 	}
+	public List<Complaint> fetchAllComplaintsGrouped(String pin,String startdate,String enddate, String group) {
+		String sql = "SELECT type, pin, count(*) as count FROM cleancity_records";
+
+		if(!StringUtils.isEmpty(pin) || !StringUtils.isEmpty(startdate) || !StringUtils.isEmpty(enddate)) {
+			sql += " WHERE ";
+			if(!StringUtils.isEmpty(pin))
+				sql += "pin =" + pin +" AND ";
+			if(!StringUtils.isEmpty(startdate))
+				sql += "ComplaintSubmissionDate >='" + startdate+"' AND ";
+			if(!StringUtils.isEmpty(enddate))
+				sql += "ComplaintSubmissionDate<='" + enddate+"' AND ";
+			sql = sql.substring(0, sql.length()-4);
+		}
+		sql += " group by "+group;
+
+		List<Complaint> complaints = jdbcTemplate.query(sql,
+				(resultSet, rowNum) -> {
+					Complaint complaint =new Complaint();
+					complaint.setCount(resultSet.getString("count"));
+					if(group.equals("pin"))
+						complaint.setPin(resultSet.getString("pin"));
+					else
+						complaint.setType(resultSet.getString("type"));
+					return complaint;
+				});
+		return complaints;
+	}
 
 }
