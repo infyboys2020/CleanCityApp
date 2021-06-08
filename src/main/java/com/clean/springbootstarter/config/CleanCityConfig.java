@@ -28,7 +28,8 @@ public class CleanCityConfig extends WebSecurityConfigurerAdapter{
 	      .authorizeRequests()
 	        .antMatchers("/user/**","/css/**","/js/**","/user/reportBoard").permitAll()
 	        .antMatchers("/admin/**").hasAuthority("ADMIN")
-	        .anyRequest().authenticated().and().formLogin()
+	        .anyRequest().authenticated().and().formLogin().
+	        defaultSuccessUrl("/admin/fetch", true)
 	        .permitAll()
 	        .and().logout()
 	        .permitAll();
