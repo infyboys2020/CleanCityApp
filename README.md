@@ -17,6 +17,10 @@
 
 [![Watch the video](https://github.com/infyboys2020/CleanCityApp/blob/main/CleanCity_thumbnail.jpeg)](https://www.youtube.com/watch?v=tEvMhoRC7dY)
 
+## The architecture
+
+![Starter kit architecture diagram](/arch_diagram.png)
+
 ### Demo Page 
 
 Url: http://localhost:9080/fetch/demo?pin=12345
