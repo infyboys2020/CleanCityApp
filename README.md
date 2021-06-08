@@ -15,7 +15,7 @@
 	
 ## Video
 
-[![Watch the video]](https://www.youtube.com/watch?v=tEvMhoRC7dY)
+[![Watch the video](https://github.com/infyboys2020/CleanCityApp/blob/main/CleanCity_thumbnail.jpeg)](https://www.youtube.com/watch?v=tEvMhoRC7dY)
 
 ### Demo Page 
 
