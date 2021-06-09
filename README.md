@@ -85,6 +85,9 @@ Your code is up and running at localhost:8080/reportBoard
 
 ## Authors
 
-* **Ansuman Nayak** - [Infyboys](https://github.com/Infyboys/)
+* **Mayuri Ghosh**
+* **Bhruguraj Sahoo**
+* **Rajan Kumar**
 * **Rajesh Nayak** - [rajanhhh](https://github.com/rajanhhh)
+* **Ansuman Nayak**
 
