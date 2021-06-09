@@ -36,12 +36,47 @@ http://localhost:9080/fetch
 http://localhost:9080/reportBoard
 
 
-```
 ### Authentication
 ```
 user: admin
 password: admin
 
 ```
+## Getting started
+
+These instructions will get you a copy of the project up and running on your local machine for development purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+What things you need to install the software
+
+* [install java](https://www.oracle.com/in/java/technologies/javase/javase-jdk8-downloads.html)
+* [install maven](https://maven.apache.org/install.html)
+
+### Installing
+
+A step by step series of examples that tell you how to get a development env running
+
+Go to the root of the downloaded project in CLI
+
+```bash
+>>cd <Root>\CleanCityApp
+>>mvn spring-boot:run
 ```
+
+That's it.
+
+Your code is up and running at localhost:8080/reportBoard
+
+## Built with
+
+* [Maven](https://maven.apache.org/) - Dependency management
+* [Java Springboot](https://www.java.com/en/) - Code logic
+* [IBM DB2](https://cloud.ibm.com/catalog?search=db2) - The database used
+* [Tomcat](https://tomcat.apache.org/) - Web server
+
+## Authors
+
+* **Ansuman Nayak** - [Infyboys](https://github.com/Infyboys/)
+* **Rajesh Nayak** - [rajanhhh](https://github.com/rajanhhh)
 
