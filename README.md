@@ -11,8 +11,19 @@
 
 ## Short description
 
-<<Write short desc>>
+The starter kit clubs together resources to help you and your team use technology to solve pollution related issues around the globe that is affected the climate adversely.
+
+** What's the problem? **
+
+The waste humans generate has been detrimental to our environment for quite some time now. Humans are generating too much trash and cannot deal with it in a sustainable way. Waste that is not biodegradable and cannot be properly be recycled is filling our oceans and landfills. Let’s take plastic waste as an example. A Central Pollution Control Board (CPCB) report (2018-19) puts the total annual plastic waste generation in India at a humungous 3.3 million metric tonnes per year. A global material balance study on plastics points out that 79 per cent of the total plastics produced in the world enters our environment as waste. Only 9 per cent of the total plastic waste in the world is recycled. All together, the amount of waste generated affects the environment in multiple ways: its contribution to the worsening climate crisis, its negative impact on wildlife and the natural environment, and its detriment to our very own public health.
+
+** How can technology help? **
+
+Technology can help in many ways. For example, technology can be used to monitor whether companies are following environmental regulations. Geo-Spatial Measurement of Air Pollution systems draw in air around gas and oil facilities to test the amount of pollutants present. Thermal conversion is another new technology that can be used to convert waste into specialty products. This process takes some cues from natural geothermal processes that use heat and pressure to turn useless materials into useful products. It could be used to turn waste into chemicals, fertilizes, oils, and other things that could give your waste another life.
 	
+** The idea **
+
+To reduce garbage deposits at various sites and ensure sanitation problems are being identified and addressed upon. With the help of citizen participation and civic engagement we can reduce garbage deposits which in turn will help to achieve a clean and healthy environment.
 ## Video
 
 [![Watch the video](https://github.com/infyboys2020/CleanCityApp/blob/main/CleanCity_thumbnail.jpeg)](https://www.youtube.com/watch?v=tEvMhoRC7dY)
