@@ -48,6 +48,13 @@ public class DashBoardController {
 		return new ResponseEntity<String> ("Welcome to clean city portal !", HttpStatus.OK);
 	
 	}
+	
+	@GetMapping("/home")
+	public String home() {
+		return "home";
+
+	}
+
 
 	/**
 	 * Method to show reportBoard page to user.
