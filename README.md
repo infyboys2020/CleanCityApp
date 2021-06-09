@@ -6,7 +6,7 @@
 1. [Video](#video)
 1. [The architecture](#the-architecture)
 1. [Getting started](#getting-started)
-1. [Contributing](#contributing)
+1. [Authors](#Authors)
 1. [Acknowledgments](#acknowledgments)
 
 ## Short description
