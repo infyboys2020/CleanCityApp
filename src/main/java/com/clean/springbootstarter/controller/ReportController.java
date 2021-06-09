@@ -25,7 +25,7 @@ public class ReportController {
 
 	@RequestMapping("/user/reportMap")
 	public String report(Model model) {
-		return "reportMap";
+		return "reportDashboard";
 	} 
 	
 	@GetMapping("/user/getComplaintList")
