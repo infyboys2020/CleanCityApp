@@ -75,11 +75,11 @@ Your code is up and running at localhost:8080/reportBoard
 * [IBM DB2](https://cloud.ibm.com/catalog?search=db2) - The database used
 * [Tomcat](https://tomcat.apache.org/) - Web server
 
-### Mapping APIs
+#### Mapping APIs
 
 * [HERE Technologies API](https://developer.here.com)
 
-### Chart UIs
+#### Chart UIs
 
 * [Any Chart](https://www.anychart.com/)
 
