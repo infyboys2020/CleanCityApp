@@ -14,7 +14,7 @@
 	<div class="login-header">
 		<h3>${status}</h3>
 		<br>
-		<a href="/reportBoard">Submit another report</a>
+		<h2><a href="/user/reportBoard">Submit another report</a></h2>
 	</div>
 </body>
 </html>

@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/css/CleanCityDesign.css">
 </head>
 <body id="markers-on-the-map">
-<div id="titleText">Clean City Records</div>
+<div id="titleText">Clean City Records Management</div>
 <div class="login-page" style="display:block">
   <div class="form">
     <form class="login-form" action="fetch" method="post">
