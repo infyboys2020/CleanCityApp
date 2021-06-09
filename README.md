@@ -19,7 +19,7 @@
 
 ## The architecture
 
-![Starter kit architecture diagram](/arch_diagram.png)
+![Clean City architecture diagram](/arch_diagram_final.png)
 
 ### Demo Page 
 
