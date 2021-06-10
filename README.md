@@ -32,27 +32,7 @@ To reduce garbage deposits at various sites and ensure sanitation problems are b
 
 ![Clean City architecture diagram](/arch_diagram_final.png)
 
-### Demo Page 
 
-Url: http://localhost:9080/fetch/demo?pin=12345
-
-Check demo page to render image from database.
-
-
-### Fetch All Report By Pin
-
-http://localhost:9080/fetch
-
-### Reporting Page
-http://localhost:9080/reportBoard
-
-
-### Authentication
-```
-user: admin
-password: admin
-
-```
 ## Getting started
 
 These instructions will get you a copy of the project up and running on your local machine for development purposes. See deployment for notes on how to deploy the project on a live system.
@@ -78,6 +58,13 @@ Go to the root of the downloaded project in CLI
 That's it.
 
 Your code is up and running at localhost:8080/home
+
+#### Authentication
+```
+user: admin
+password: admin
+
+```
 
 ### Built with
 
