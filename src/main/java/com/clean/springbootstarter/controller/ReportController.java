@@ -23,7 +23,7 @@ public class ReportController {
 	@Autowired
 	CleanCityService cleanCityService;
 
-	@RequestMapping("/user/reportMap")
+	@RequestMapping("/user/reportDashboard")
 	public String report(Model model) {
 		return "reportDashboard";
 	} 

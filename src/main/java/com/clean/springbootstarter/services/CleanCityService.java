@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,13 @@ public class CleanCityService {
 
 		String sql = "SELECT max(id) FROM cleancity_records";
 		int ticketId;
-		ticketId = jdbcTemplate.queryForObject(sql, new Object[] {}, Integer.class);
+		try {
+			ticketId = jdbcTemplate.queryForObject(sql, new Object[] {}, Integer.class);
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ticketId=1;
+		}
 		return ticketId;
 	}
 
@@ -33,7 +40,12 @@ public class CleanCityService {
 
 		String sql = "SELECT status FROM cleancity_records where id= " + ticketId;
 		String status="";
-		status = jdbcTemplate.queryForObject(sql, new Object[] {}, String.class);
+		try {
+			status = jdbcTemplate.queryForObject(sql, new Object[] {}, String.class);
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return status;
 	}
 

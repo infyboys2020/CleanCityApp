@@ -137,10 +137,6 @@ public class DashBoardController {
 			 fin = (FileInputStream) file.getInputStream();
 			 
 			}
-			// FileInputStream fin = new
-			// FileInputStream("/home/bhruguraj/Pictures/test.png");
-			// System.out.println(fin);
-			//Complaint complaint = new Complaint(form.getName(), form.getAddress(), form.getPin(), form.getPhone_number(),fin);
 			Complaint complaint = new Complaint(0, form.getType(), form.getName(), form.getAddress(),
 				form.getPin(), form.getPhone_number(), fin, form.getLongitude(), form.getLatitude());
 

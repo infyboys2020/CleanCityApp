@@ -7,17 +7,10 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <title>Clean City</title>
-<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
-<script type="text/javascript" src='/js/test-credentials.js'></script>    
-<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
-<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
-<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
-<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/base.css">
-<script src="/js/garbageReport.js"></script>
 	
 
 <style type="text/css">
@@ -33,23 +26,24 @@ input{
 
 </style>
 </head>
-<body id="markers-on-the-map">
-
+<body>
 
 	<div class="page-header">
-		<h1>CleanCity Navigator</h1>
+		<h1 style="color: snow;">CleanCity Navigator</h1>
 	</div>
-
 
     <form class="login" action = "/user/reportBoard" method="get" enctype="multipart/form-data">
   <div class="login">
   
   <div class="login-form">
-    <input type="submit" value="Reporting Board" formAction="/user/reportBoard" class="login-button"/>
+    <input type="submit" value="Register a complaint" formAction="/user/reportBoard" class="login-button"/>
     <br>
-    <input type="submit" value="Ticket Board" formAction="/user/ticketBoard" class="login-button"/>
+    <input type="submit" value="Check Ticket Status" formAction="/user/ticketBoard" class="login-button"/>
     <br>
-    <input type="submit" value="Admin Board" formAction="/admin/fetch" class="login-button"/>
+    <input type="submit" value="Complaints Dashboard" formAction="/user/reportDashboard" class="login-button"/>
+    <br>
+    <input type="submit" value="Complaints Management(For Admins)" formAction="/admin/fetch" class="login-button" 
+    	style="background-color: #f9f9b5;"/>
     <br>
   </div>
 </div>
@@ -57,8 +51,5 @@ input{
 </form>
 
 
-	<div id="errorMessage"></div>
-	
-	<script type="text/javascript" src="/js/locationSelectorMapLoader.js"></script>
 </body>
 </html>
