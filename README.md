@@ -11,11 +11,11 @@
 
 ## Short description
 
-The starter kit clubs together resources to help you and your team use technology to solve pollution related issues around the globe that is affected the climate adversely.
+This application clubs together resources to help you and your team use technology to solve pollution related issues around the globe that is affecting the climate adversely. In this application users can report garbage collection issues in their locality. Users can upload photographs of garbage deposits and register a complaint with address details of the dumping site. The complaints will be reviewed by the admin and appropriate action will be taken. Users will be provided with an incident number with the help of which they can check the status of their complaint.
 
 **What's the problem?**
 
-The waste humans generate has been detrimental to our environment for quite some time now. Humans are generating too much trash and cannot deal with it in a sustainable way. Waste that is not biodegradable and cannot be properly be recycled is filling our oceans and landfills. Let’s take plastic waste as an example. A Central Pollution Control Board (CPCB) report (2018-19) puts the total annual plastic waste generation in India at a humungous 3.3 million metric tonnes per year. A global material balance study on plastics points out that 79 per cent of the total plastics produced in the world enters our environment as waste. Only 9 per cent of the total plastic waste in the world is recycled. All together, the amount of waste generated affects the environment in multiple ways: its contribution to the worsening climate crisis, its negative impact on wildlife and the natural environment, and its detriment to our very own public health.
+The waste humans generate has been detrimental to our environment for quite some time now. Humans are generating too much trash and cannot deal with it in a sustainable way. Waste that is not biodegradable and cannot properly be recycled is filling our oceans and landfills. Let’s take plastic waste as an example. A Central Pollution Control Board (CPCB) report (2018-19) puts the total annual plastic waste generation in India at a humungous 3.3 million metric tonnes per year. A global material balance study on plastics points out that 79 per cent of the total plastics produced in the world enters our environment as waste. Only 9 per cent of the total plastic waste in the world is recycled. All together, the amount of waste generated affects the environment in multiple ways: its contribution to the worsening climate crisis, its negative impact on wildlife and the natural environment, and its detriment to our very own public health.
 
 **How can technology help?**
 
