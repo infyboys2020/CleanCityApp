@@ -5,6 +5,7 @@
 1. [Short description](#short-description)
 1. [Video](#video)
 1. [The architecture](#the-architecture)
+1.[Long Description](#long-description)
 1. [Getting started](#getting-started)
 1. [Authors](#Authors)
 1. [Acknowledgments](#acknowledgments)
@@ -27,6 +28,8 @@ To reduce garbage deposits at various sites and ensure sanitation problems are b
 ## Video
 
 [![Watch the video](https://github.com/infyboys2020/CleanCityApp/blob/main/CleanCity_thumbnail.jpeg)](https://www.youtube.com/watch?v=tEvMhoRC7dY)
+
+## Long description
 
 ## The architecture
 
