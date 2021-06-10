@@ -77,7 +77,7 @@ Go to the root of the downloaded project in CLI
 
 That's it.
 
-Your code is up and running at localhost:8080/reportBoard
+Your code is up and running at localhost:8080/home
 
 ### Built with
 
@@ -96,9 +96,9 @@ Your code is up and running at localhost:8080/reportBoard
 
 ## Authors
 
-* **Mayuri Ghosh**
+* **Mayuri Ghosh** - 
 * **Bhruguraj Sahoo**
 * **Rajan Kumar**
-* **Rajesh Nayak** - [rajanhhh](https://github.com/rajanhhh)
+* **Rajesh Nayak** - rajeshkumarnayak1994@gmail.com
 * **Ansuman Nayak**
 
