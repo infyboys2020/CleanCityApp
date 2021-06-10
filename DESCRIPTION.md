@@ -6,6 +6,6 @@ In Clean City Application, Users can upload photographs of garbage deposits and 
 
 After doing the needful (informing municipal corporation to verify and clean the area), admin can change the status of the complaint from “In-progress” to “Acknowledged”. User gets a notification as soon as the status of complaint changes. After getting confirmation of the area getting cleaned, Admin can close the complaint. In the starter kit we have implemented email confirmation system where the admin would receive a notification for change in status of incident, but with small modifications it can be done for Users. For reporting, Users can select the location of the garbage site with the help of maps provided in the application.
 
-##Conclusion
+**Conclusion**
 
 The application aims to resolve issues like garbage collection and poor sanitation. Poor sanitization is linked to transmission of diseases such as cholera, diarrhea, dysentery, hepatitis A, typhoid and polio and exacerbates stunting. With the help of citizen participation and civic engagement we can help to develop a cleaner and disease free environment.
