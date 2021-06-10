@@ -96,9 +96,9 @@ Your code is up and running at localhost:8080/home
 
 ## Authors
 
-* **Mayuri Ghosh** - 
-* **Bhruguraj Sahoo**
-* **Rajan Kumar**
+* **Mayuri Ghosh** - mayuri021996@gmail.com
+* **Bhruguraj Sahoo** - bhrugurajsahoo@gmail.com
+* **Rajan Kumar** - rajanbabaguru@rediffmail.com
 * **Rajesh Nayak** - rajeshkumarnayak1994@gmail.com
-* **Ansuman Nayak**
+* **Ansuman Nayak** - ansumannayak1994@gmail.com
 
