@@ -32,13 +32,10 @@ To reduce garbage deposits at various sites and ensure sanitation problems are b
 
 ![Clean City architecture diagram](/arch_diagram_final.png)
 
-####User :
 1. User opens his mobile/computer and logs into the CleanCity application.
 2. User enters the complain details, uploads the image to report the incident.
 3. The Here  Map API loads the map, which helps the user select his particular address on the map.
 4. After successful registration of complaint, the complaint details are stored in the IBM DB2 server and a confirmation email is sent to the user with a ticket number. The user can come back later and use this ticket number to know the status of the comlaint.
-
-####Admin :
 5. Admin logs into the system with valid credentials.
 6. Admin filters the complaints on the basis of pin code, logged date etc. After assigning the work to appropriate team, he marks the ticket as 'Acknowledged'. After completion of the work, he marks ticket as 'Completed'.
 7. The portal shows all the complaints from the DB to the admin as per the filter criteria.
