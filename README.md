@@ -44,6 +44,8 @@ To reduce garbage deposits at various sites and ensure sanitation problems are b
 
 ## Long description
 
+* [More detail is available here](/DESCRIPTION.md)
+
 ## Getting started
 
 These instructions will get you a copy of the project up and running on your local machine for development purposes. See deployment for notes on how to deploy the project on a live system.
