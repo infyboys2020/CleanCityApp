@@ -5,7 +5,7 @@
 1. [Short description](#short-description)
 1. [Video](#video)
 1. [The architecture](#the-architecture)
-1.[Long Description](#long-description)
+1. [Long Description](#long-description)
 1. [Getting started](#getting-started)
 1. [Authors](#Authors)
 1. [Acknowledgments](#acknowledgments)
@@ -29,8 +29,6 @@ To reduce garbage deposits at various sites and ensure sanitation problems are b
 
 [![Watch the video](https://github.com/infyboys2020/CleanCityApp/blob/main/CleanCity_thumbnail.jpeg)](https://www.youtube.com/watch?v=tEvMhoRC7dY)
 
-## Long description
-
 ## The architecture
 
 ![Clean City architecture diagram](/arch_diagram_final.png)
@@ -43,6 +41,8 @@ To reduce garbage deposits at various sites and ensure sanitation problems are b
 6. Admin filters the complaints on the basis of pin code, logged date etc. After assigning the work to appropriate team, he marks the ticket as 'Acknowledged'. After completion of the work, he marks ticket as 'Completed'.
 7. The portal shows all the complaints from the DB to the admin as per the filter criteria.
 8. The Map API shows the particular place of the incident on the map, which makes it easier to find the place.
+
+## Long description
 
 ## Getting started
 
