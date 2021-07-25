@@ -39,14 +39,14 @@
 
 
 	<div class="page-header">
-		<h1>CleanCity Reporting Board</h1>
+		<h1>CleanCity Complain Portal</h1>
 	</div>
 
 
     <form class="login" action="/user/reportBoard" method="post" enctype="multipart/form-data">
   <div class="login">
   <div class="login-header">
-    <h1>Please fill in all the details to proceed</h1>
+    <h2>Please fill in all the details to proceed</h2>
   </div>
   <div class="login-form">
     <h3>Name:</h3>
@@ -54,8 +54,10 @@
     
     <h3 for="type">Type of incident:</h3>
 	<select name="type" id="type">
-	  <option value="garbage">Garbage</option>
-	  <option value="pothole">Pothole</option>
+	  <option value="Garbage collection">Garbage collection request</option>
+	  <option value="Sweepeing request">Road sweeping not done</option>
+	  <option value="Pothole reported">Pothole on road</option>
+	  <option value="Illegal tree cutting">Illegal tree cutting</option>
 	</select>
     
     <h3>Address:</h3>
@@ -75,8 +77,8 @@
     <br>
     <input class="uploadBtn" type="file" name="image" accept="image/png, image/jpeg" required/><br><br>
     <br>
-    <a id="submitReport">Have already raised a ticket?
-    </a><br><br>
+    <h4><a href="/user/ticketBoard">Have already raised a ticket?
+    </a></h4><br><br>
     <input type="submit" value="Submit" class="login-button"/>
     <br>
   </div>

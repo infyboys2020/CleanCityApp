@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import org.springframework.util.StringUtils;
 import com.clean.springbootstarter.beans.Complaint;
 
 @Service
-public class cleanCityService {
+public class CleanCityService {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
@@ -25,7 +26,13 @@ public class cleanCityService {
 
 		String sql = "SELECT max(id) FROM cleancity_records";
 		int ticketId;
-		ticketId = jdbcTemplate.queryForObject(sql, new Object[] {}, Integer.class);
+		try {
+			ticketId = jdbcTemplate.queryForObject(sql, new Object[] {}, Integer.class);
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ticketId=1;
+		}
 		return ticketId;
 	}
 
@@ -33,7 +40,12 @@ public class cleanCityService {
 
 		String sql = "SELECT status FROM cleancity_records where id= " + ticketId;
 		String status="";
-		status = jdbcTemplate.queryForObject(sql, new Object[] {}, String.class);
+		try {
+			status = jdbcTemplate.queryForObject(sql, new Object[] {}, String.class);
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return status;
 	}
 
@@ -122,6 +134,33 @@ public class cleanCityService {
 						resultSet.getString("ComplaintSubmissionDate"),
 						resultSet.getString("status")));
 						
+		return complaints;
+	}
+	public List<Complaint> fetchAllComplaintsGrouped(String pin,String startdate,String enddate, String group) {
+		String sql = "SELECT type, pin, count(*) as count FROM cleancity_records";
+
+		if(!StringUtils.isEmpty(pin) || !StringUtils.isEmpty(startdate) || !StringUtils.isEmpty(enddate)) {
+			sql += " WHERE ";
+			if(!StringUtils.isEmpty(pin))
+				sql += "pin =" + pin +" AND ";
+			if(!StringUtils.isEmpty(startdate))
+				sql += "ComplaintSubmissionDate >='" + startdate+"' AND ";
+			if(!StringUtils.isEmpty(enddate))
+				sql += "ComplaintSubmissionDate<='" + enddate+"' AND ";
+			sql = sql.substring(0, sql.length()-4);
+		}
+		sql += " group by "+group;
+
+		List<Complaint> complaints = jdbcTemplate.query(sql,
+				(resultSet, rowNum) -> {
+					Complaint complaint =new Complaint();
+					complaint.setCount(resultSet.getString("count"));
+					if(group.equals("pin"))
+						complaint.setPin(resultSet.getString("pin"));
+					else
+						complaint.setType(resultSet.getString("type"));
+					return complaint;
+				});
 		return complaints;
 	}
 

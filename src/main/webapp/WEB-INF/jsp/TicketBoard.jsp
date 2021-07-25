@@ -43,7 +43,7 @@ body {
     <form class="login" action="/user/ticketBoard" method="post" >
   <div class="login">
   <div class="login-header">
-    <h1>Please fill in all the details to proceed</h1>
+    <h2>Please fill in all the details to proceed</h2>
   </div>
   <div class="login-form">
       <h3>Ticket ID:</h3>

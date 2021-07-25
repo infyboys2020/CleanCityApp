@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +33,7 @@ import com.clean.springbootstarter.beans.Complaint;
 public class DashBoardController {
 
 	@Autowired
-	com.clean.springbootstarter.services.cleanCityService cleanCityService;
+	com.clean.springbootstarter.services.CleanCityService cleanCityService;
 	
 	@Autowired
 	EmailService emailService;
@@ -47,6 +48,13 @@ public class DashBoardController {
 		return new ResponseEntity<String> ("Welcome to clean city portal !", HttpStatus.OK);
 	
 	}
+	
+	@GetMapping("/home")
+	public String home() {
+		return "home";
+
+	}
+
 
 	/**
 	 * Method to show reportBoard page to user.
@@ -76,7 +84,6 @@ public class DashBoardController {
 	@GetMapping("/user/ticketBoard")
 	public String ticketBoard() {
 		return "TicketBoard";
-
 	}
 	
 	/**
@@ -130,10 +137,6 @@ public class DashBoardController {
 			 fin = (FileInputStream) file.getInputStream();
 			 
 			}
-			// FileInputStream fin = new
-			// FileInputStream("/home/bhruguraj/Pictures/test.png");
-			// System.out.println(fin);
-			//Complaint complaint = new Complaint(form.getName(), form.getAddress(), form.getPin(), form.getPhone_number(),fin);
 			Complaint complaint = new Complaint(0, form.getType(), form.getName(), form.getAddress(),
 				form.getPin(), form.getPhone_number(), fin, form.getLongitude(), form.getLatitude());
 
@@ -249,33 +252,7 @@ public class DashBoardController {
 		return model;
 
 	}
-	/*
-	 * I do not see reportMap used anywhere. 
-	 * Please check and delete it if not necessary.
-	 */
-	@RequestMapping("/admin/reportMap")
-	public String report(Model model) {
-		return "reportMap";
-	} 
 
-	@RequestMapping("/getComplaintList")
-	@ResponseBody
-	public String getComplaintList() {
-		List<Complaint> complaints =cleanCityService.fetchAllComplaints(null,null,null);
-		ObjectMapper Obj = new ObjectMapper(); 
-		String jsonStr=null;
-		try {
-			jsonStr = Obj.writeValueAsString(complaints);
-		} catch (JsonGenerationException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return jsonStr;
-	} 
-	
 	@GetMapping("/admin/fetch/updateStatus")
 	@ResponseBody
 	public String updateStatus(@RequestParam("id") String id,@RequestParam("status") String status) {

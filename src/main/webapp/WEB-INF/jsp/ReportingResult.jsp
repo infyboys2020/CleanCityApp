@@ -16,7 +16,7 @@
 		<br>
 		<h3>Please note this ticket ID for future reference: ${ticketId}
 		</h3>
-		<a href="/reportBoard">Submit another report</a>
+		<h2><a href="/user/reportBoard">Submit another report</a></h2>
 	</div>
 </body>
 </html>
