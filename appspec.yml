@@ -1,14 +1,16 @@
 version: 0.0
 os: linux
+
 files:
   - source: /
     destination: /home/ec2-user/server
-    
+
 permissions:
-  -object: /
-  pattern: "**"
-  owner: ec2-user
-  group: ec2-user
+  - object: /
+    pattern: "**"
+    owner: ec2-user
+    group: ec2-user
+
 hooks:
   BeforeInstall:
     - location: install_dependencies.sh
@@ -20,9 +22,9 @@ hooks:
       runas: ec2-user
   ApplicationStart:
     - location: start_server.sh
-      timeout: 300
+      timeout: 20
       runas: ec2-user
   ApplicationStop:
     - location: stop_server.sh
-      timeout: 300
+      timeout: 20
       runas: ec2-user
