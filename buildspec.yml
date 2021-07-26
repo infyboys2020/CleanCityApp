@@ -17,6 +17,6 @@ phases:
 artifacts:
   files:
     - target/spring-boot-0.0.1-SNAPSHOT.jar
-    -scripts/*.sh
-    -appspec.yml
+    - scripts/*.sh
+    - appspec.yml
   discard-paths: yes
