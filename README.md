@@ -46,6 +46,16 @@ To reduce garbage deposits at various sites and ensure sanitation problems are b
 
 * [More detail is available here](/DESCRIPTION.md)
 
+## Test the application on cloud
+
+* [Link to log a complaint](http://cleancitynewapplication-env-1.eba-83vtwsaz.us-east-2.elasticbeanstalk.com/user/ticketBoard)
+* [Link to login as admin and acknowledge tickets](http://cleancitynewapplication-env-1.eba-83vtwsaz.us-east-2.elasticbeanstalk.com/admin/fetch)
+### Authenitication
+```
+username: test
+password: test
+```
+
 ## Getting started
 
 These instructions will get you a copy of the project up and running on your local machine for development purposes. See deployment for notes on how to deploy the project on a live system.
@@ -71,13 +81,6 @@ Go to the root of the downloaded project in CLI
 That's it.
 
 Your code is up and running at localhost:8080/home
-
-#### Authentication
-```
-user: admin
-password: admin
-
-```
 
 ### Built with
 
