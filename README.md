@@ -48,8 +48,8 @@ To reduce garbage deposits at various sites and ensure sanitation problems are b
 
 ## Test the application on cloud
 
-* [Link to log a complaint](http://cleancitynewapplication-env-1.eba-83vtwsaz.us-east-2.elasticbeanstalk.com/user/ticketBoard)
-* [Link to login as admin and acknowledge tickets](http://cleancitynewapplication-env-1.eba-83vtwsaz.us-east-2.elasticbeanstalk.com/admin/fetch)
+* **[Link to log a complaint](http://cleancitynewapplication-env-1.eba-83vtwsaz.us-east-2.elasticbeanstalk.com/user/ticketBoard)**
+* **[Link to login as admin and acknowledge tickets](http://cleancitynewapplication-env-1.eba-83vtwsaz.us-east-2.elasticbeanstalk.com/admin/fetch)**
 ### Authenitication credentials to test
 ```
 username: test
